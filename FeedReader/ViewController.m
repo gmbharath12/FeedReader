@@ -39,28 +39,7 @@ static NSString *kImageSource = @"gd:image";
     [self fetchData];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 
-  /*  
-   //Fetching date --- Asynchronus Way
-   dispatch_async(dispatch_get_global_queue(0, 0),
-                   ^{
-                       NSError *error;
-                       self.m_cXmlData = [NSData dataWithContentsOfURL:[NSURL URLWithString:kFeederURL] options:NSDataReadingUncached error:&error];
-                       
-                       dispatch_async(dispatch_get_main_queue(),
-                                      ^{
-                                          if (error)
-                                          {
-                                              NSString *errorMessage = [error localizedDescription];
-                                              UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot fetch the data" message:errorMessage delegate:nil cancelButtonTitle:@"OK"otherButtonTitles:nil];
-                                              [alertView show];
-                                          }
-                                          [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                                          NSLog(@"Data = %@",m_cXmlData);
 
-                                       }
-                                      );
-                    }
-                   );*/
 }
 
 
@@ -127,7 +106,7 @@ static NSString *kImageSource = @"gd:image";
     
 //    NSLog(@"XML data = %@",m_cXmlData);
 
-//    Using SAX NSXMLParser. After parsing I realized DOM would have made my job easier.
+//    Using SAX NSXMLParser.
     
     m_cParser = [[NSXMLParser alloc] initWithData:m_cXmlData]; //could have used 'initWithURL' r8 here.realized it later
     [m_cParser setDelegate:self];
